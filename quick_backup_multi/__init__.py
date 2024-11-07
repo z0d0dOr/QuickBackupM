@@ -501,6 +501,7 @@ def _do_restore_backup(source: CommandSource, slot: int):
 
 		source.get_server().stop()
 		server_inst.logger.info('Wait for server to stop')
+		source.get_server().exit()
 		source.get_server().wait_for_start()
 
 		server_inst.logger.info('Backup current world to avoid idiot')
