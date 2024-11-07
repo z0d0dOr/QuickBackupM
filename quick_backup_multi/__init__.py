@@ -506,7 +506,7 @@ def _do_restore_backup(source: CommandSource, slot: int):
 		slot_info = get_slot_info(slot)
 		for countdown in range(1, 20):
 			print_message(source, command_run(
-				tr('do_restore.countdown.fixtext', 10 - countdown, slot, format_slot_info(info_dict=slot_info)),
+				tr('do_restore.countdown.fixtext', 20 - countdown, slot, format_slot_info(info_dict=slot_info)),
 				tr('do_restore.countdown.hover'),
 				'{} abort'.format(Prefix)
 			), tell=False)
