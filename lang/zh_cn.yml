@@ -56,7 +56,9 @@ quick_backup_multi:
 
   do_restore:
     countdown.intro: 10秒后关闭服务器§c回档§r
+    countdown.fixintro: 10秒后执行Kill指令(防止保存未完成)
     countdown.text: 还有{0}秒，将§c回档§r为槽位§6{1}§r，{2}
+    countdown.fixtext: 还有{0}秒，将执行Kill指令
     countdown.hover: 点击终止回档！
     abort: §c回档§r被中断！
 

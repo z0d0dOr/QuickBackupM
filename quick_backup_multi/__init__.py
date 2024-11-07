@@ -500,8 +500,22 @@ def _do_restore_backup(source: CommandSource, slot: int):
 				return
 
 		source.get_server().stop()
+		
 		server_inst.logger.info('Wait for server to stop')
-		source.get_server().exit()
+		print_message(source, tr('do_restore.countdown.fixintro'), tell=False)
+		slot_info = get_slot_info(slot)
+		for countdown in range(1, 10):
+			print_message(source, command_run(
+				tr('do_restore.countdown.fixtext', 10 - countdown, slot, format_slot_info(info_dict=slot_info)),
+				tr('do_restore.countdown.hover'),
+				'{} abort'.format(Prefix)
+			), tell=False)
+
+			if abort_restore.wait(1):
+				print_message(source, tr('do_restore.abort'), tell=False)
+				return
+		
+		source.get_server().Kill()
 		source.get_server().wait_for_start()
 
 		server_inst.logger.info('Backup current world to avoid idiot')
